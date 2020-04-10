@@ -222,7 +222,10 @@ void GetXiIntegrand(SCPData *SCPD, double Xi, double *U)
   /* at this frequency                                           */
   /***************************************************************/
   for(int na=0; na<NumAtoms; na++)
+  {
    PolModels[na]->GetPolarizability(Xi, Alphas[na]);
+   printf("@Xi=%e, Alphas[%d][0,0] = %e\n", Xi, na, Alphas[na]->GetEntryD(0,0));
+  }
 
   /***************************************************************/ 
   /***************************************************************/ 
