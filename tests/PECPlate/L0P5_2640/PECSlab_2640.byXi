@@ -163,3 +163,48 @@
 #4: Xi (imaginary frequency) (3e14 rad/sec)
 #5: polarizability of Rb (a_0^3)
 #6: CP potential per unit frequency for Rb (neV / (3e14 rad/sec))
+# scuff-caspol running on (null) (05/05/20::12:57:49)
+#
+# command line:
+#
+# scuff-caspol  --geometry  PECSlab_2640.scuffgeo  --Atom  Rb
+#  --EPFile  EPFile4  --XiFile  ../XiFile2
+# 
+#
+# data columns:
+#1: X (um) 
+#2: Y (um) 
+#3: Z (um) 
+#4: Xi (imaginary frequency) (3e14 rad/sec)
+#5: polarizability of Rb (a_0^3)
+#6: CP potential per unit frequency for Rb (neV / (3e14 rad/sec))
+# scuff-caspol running on (null) (05/05/20::13:00:52)
+#
+# command line:
+#
+# scuff-caspol  --geometry  PECSlab_2640.scuffgeo  --Atom  Rb
+#  --EPFile  EPFile4  --XiFile  ../XiFile2
+# 
+#
+# data columns:
+#1: X (um) 
+#2: Y (um) 
+#3: Z (um) 
+#4: Xi (imaginary frequency) (3e14 rad/sec)
+#5: polarizability of Rb (a_0^3)
+#6: CP potential per unit frequency for Rb (neV / (3e14 rad/sec))
+# scuff-caspol running on (null) (05/06/20::10:51:00)
+#
+# command line:
+#
+# scuff-caspol  --geometry  PECSlab_2640.scuffgeo  --Atom  Rb
+#  --EPFile  EPFile4  --XiFile  ../XiFile2
+# 
+#
+# data columns:
+#1: X (um) 
+#2: Y (um) 
+#3: Z (um) 
+#4: Xi (imaginary frequency) (3e14 rad/sec)
+#5: polarizability of Rb (a_0^3)
+#6: CP potential per unit frequency for Rb (neV / (3e14 rad/sec))
