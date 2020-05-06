@@ -755,6 +755,22 @@ void HMatrix::ExtractBlock(int RowOffset, int ColOffset, HMatrix *B)
 }
 
 /***************************************************************/
+/* Get the real part of the matrix  ****************************/
+/***************************************************************/
+HMatrix *GetReal(HMatrix *A) {
+  if (A->RealComplex == LHM_REAL) return A;
+  HMatrix *C;
+  if (A->StorageType == LHM_SYMMETRIC || A->StorageType == LHM_HERMITIAN)
+    C = new HMatrix(A->NR, A->NC, LHM_REAL, LHM_SYMMETRIC);
+  else
+    C = new HMatrix(A->NR, A->NC, LHM_REAL, LHM_NORMAL);
+  for (size_t Index=0; Index < A->NumEntries(); Index++){
+    (C->DM)[Index] = real((A->ZM)[Index]);
+  }
+  return C;
+}
+
+/***************************************************************/
 /* Make an unpacked copy of the matrix *************************/
 /***************************************************************/
 HMatrix *CopyHMatrixUnpacked(HMatrix *Mpacked) {
