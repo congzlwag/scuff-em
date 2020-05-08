@@ -280,7 +280,7 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
      /*--------------------------------------------------------------*/
      /*--------------------------------------------------------------*/
      /*--------------------------------------------------------------*/
-     cdouble GC[6];
+     cdouble GC[6]; // GC is
      RFIData MyData, *Data=&MyData;
      Data->X0  = X;
      Data->k   = ks[RegionIndex];
