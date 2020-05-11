@@ -157,7 +157,8 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
      for(int d=0; d<LDim; d++)
       kBloch[d] = -1.0*kBloch0[d];
    };
-
+  
+  bool PureImagOmega = (real(Omega)==0);
   /***************************************************************/
   /***************************************************************/
   /***************************************************************/
@@ -172,7 +173,7 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
       { Warn("wrong-size RFMatrix passed to GetRFMatrix; reallocating");
         delete RFMatrix;
       };
-     RFMatrix = new HMatrix(NBF, 6*NX, LHM_COMPLEX);
+     RFMatrix = new HMatrix(NBF, 6*NX, PureImagOmega?LHM_REAL:LHM_COMPLEX);
    };
   RFMatrix->Zero();
 
@@ -280,7 +281,7 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
      /*--------------------------------------------------------------*/
      /*--------------------------------------------------------------*/
      /*--------------------------------------------------------------*/
-     cdouble GC[6]; // GC is
+     cdouble GC[6]; 
      RFIData MyData, *Data=&MyData;
      Data->X0  = X;
      Data->k   = ks[RegionIndex];

@@ -63,7 +63,8 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
   int NBF = TotalBFs;
   int NX  = XMatrix->NR;
   Log("Getting DGFs at %i eval points...",NX);
-
+  
+  bool PureImagOmega = (real(Omega)==0);
   /*--------------------------------------------------------------*/
   /* allocate storage for RFSource, RFDest matrices. I keep these */
   /* on hand as statically-allocated buffers on the assumption    */
@@ -76,8 +77,8 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
    { 
      if (RFSource) delete RFSource;
      if (RFDest)   delete RFDest;
-     RFSource=new HMatrix(NBF, 6*NX, LHM_COMPLEX);
-     RFDest=new HMatrix(NBF, 6*NX, LHM_COMPLEX);
+     RFSource = new HMatrix(NBF, 6*NX, PureImagOmega?LHM_REAL:LHM_COMPLEX);
+     RFDest   = new HMatrix(NBF, 6*NX, PureImagOmega?LHM_REAL:LHM_COMPLEX);
    };
 
   /*--------------------------------------------------------------*/

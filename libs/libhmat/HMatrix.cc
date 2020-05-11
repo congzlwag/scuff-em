@@ -389,7 +389,10 @@ void HMatrix::SetEntry(size_t nr, size_t nc, cdouble Entry)
   Index=(StorageType==LHM_NORMAL ? (nr + nc*NR) : (nr + nc*(nc+1)/2 ) );
   
   if (RealComplex==LHM_REAL)
+   {
    DM[Index] = real(Entry);
+   if (imag(Entry) != 0) Warn("warning: non-zero imaginary part ignored.");
+   }
   else if ( StorageType==LHM_HERMITIAN )
    ZM[Index] = ( Flipped==1 ? conj(Entry) : Entry );
   else /* complex symmetric */
