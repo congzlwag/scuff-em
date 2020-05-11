@@ -208,11 +208,21 @@ void RWGGeometry::GetDyadicGFs(double XEval[3], double XSource[3],
 { 
   (void )KN; // not used, retained for backward compatibility
 
-  double XBuffer[6];
-  memcpy(XBuffer+0, XEval,   3*sizeof(double));
-  memcpy(XBuffer+3, XSource, 3*sizeof(double));
-  HMatrix XMatrix(1,6,LHM_REAL,LHM_NORMAL,XBuffer); // HMatrix XMatrix(1,6,LHM_COMPLEX,LHM_NORMAL,XBuffer);
-
+  HMatrix *XMatrix;
+  if (XEval == XSource)
+  {
+    double XBuffer[3];
+    memcpy(XBuffer,   XEval,   3*sizeof(double));
+    XMatrix = new HMatrix(1,3, LHM_REAL,LHM_NORMAL,XBuffer);
+  }
+  else
+  {
+    double XBuffer[6];
+    memcpy(XBuffer+0, XEval,   3*sizeof(double));
+    memcpy(XBuffer+3, XSource, 3*sizeof(double));
+    XMatrix = new HMatrix(1,6, LHM_REAL,LHM_NORMAL,XBuffer);
+  }
+  
   if ( (LBasis && !kBloch) || (!LBasis && kBloch) )
    ErrExit("%s:%i: incorrect kBloch specification",__FILE__,__LINE__);
 
