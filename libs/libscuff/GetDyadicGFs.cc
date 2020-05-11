@@ -219,7 +219,7 @@ void RWGGeometry::GetDyadicGFs(double XEval[3], double XSource[3],
   cdouble GBuffer[18];
   HMatrix GMatrix(1,18,LHM_COMPLEX,LHM_NORMAL,GBuffer);
   
-  GetDyadicGFs(Omega, kBloch, &XMatrix, M, &GMatrix);
+  GetDyadicGFs(Omega, kBloch, &XMatrix, M, &GMatrix, true);
 
   for(int i=0; i<3; i++)
    for(int j=0; j<3; j++)
