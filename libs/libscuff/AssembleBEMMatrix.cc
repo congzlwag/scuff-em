@@ -778,8 +778,8 @@ HMatrix *RWGGeometry::AssembleBEMMatrix(cdouble Omega, HMatrix *M)
 HMatrix *RWGGeometry::AllocateBEMMatrix(bool PureImagFreq, bool Packed)
 {
   int Storage = Packed ? LHM_SYMMETRIC : LHM_NORMAL;
-  int DataType = LHM_COMPLEX;
-  // int DataType = (!LBasis && PureImagFreq) ? LHM_REAL : LHM_COMPLEX;
+  // int DataType = LHM_COMPLEX;
+  int DataType = (!LBasis && PureImagFreq) ? LHM_REAL : LHM_COMPLEX;
   return new HMatrix(TotalBFs, TotalBFs, DataType, Storage);
 }
 
