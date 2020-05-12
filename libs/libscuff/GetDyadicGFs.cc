@@ -64,7 +64,13 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
   int NX  = XMatrix->NR;
   Log("Getting DGFs at %i eval points...",NX);
   
-  bool PureImagOmega = (real(Omega)==0);
+  /* Decide whether real RFSource and real RFDest suffice */
+  bool HavekBloch = false;
+  if (kBloch)
+   for(int d=0; d<LDim; d++)
+    if (kBloch[d]!=0.0) HavekBloch=true;  
+  bool RealRF = (!HavekBloch && (real(Omega)==0));
+
   /*--------------------------------------------------------------*/
   /* allocate storage for RFSource, RFDest matrices. I keep these */
   /* on hand as statically-allocated buffers on the assumption    */
@@ -77,8 +83,8 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
    { 
      if (RFSource) delete RFSource;
      if (RFDest)   delete RFDest;
-     RFSource = new HMatrix(NBF, 6*NX, PureImagOmega?LHM_REAL:LHM_COMPLEX);
-     RFDest   = new HMatrix(NBF, 6*NX, PureImagOmega?LHM_REAL:LHM_COMPLEX);
+     RFSource = new HMatrix(NBF, 6*NX, RealRF?LHM_REAL:LHM_COMPLEX);
+     RFDest   = new HMatrix(NBF, 6*NX, RealRF?LHM_REAL:LHM_COMPLEX);
    };
 
   /*--------------------------------------------------------------*/
@@ -104,11 +110,6 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
   /*--------------------------------------------------------------*/
   /*- precompute 'reduced-field' vectors -------------------------*/
   /*--------------------------------------------------------------*/
-  bool HavekBloch = false;
-  if (kBloch)
-   for(int d=0; d<LDim; d++)
-    if (kBloch[d]!=0.0) HavekBloch=true;  
-
   GetRFMatrix(Omega, kBloch, XMatrix, RFDest, true);
   if ( TwoPointDGF || HavekBloch )
    GetRFMatrix(Omega, kBloch, XMatrix, RFSource, false, TwoPointDGF ? 3 : 0);

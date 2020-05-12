@@ -149,16 +149,23 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
                                   HMatrix *XMatrix, HMatrix *RFMatrix,
                                   bool MinuskBloch, int ColumnOffset)
 {
+  /* Decide whether real RFSource and real RFDest suffice */
   double *kBloch=kBloch0;
+  bool HavekBloch = false;
+  if (kBloch)
+   for(int d=0; d<LDim; d++)
+    if (kBloch[d]!=0.0) HavekBloch=true;  
+  bool RealRF = (!HavekBloch && (real(Omega)==0));
+
+  /* Flip kBloch if necessary */
   double kBlochBuffer[3];
-  if (kBloch && MinuskBloch)
+  if (HavekBloch && MinuskBloch)
    { kBloch = kBlochBuffer;
      kBloch[0] = kBloch[1] = kBloch[2] = 0.0;
      for(int d=0; d<LDim; d++)
       kBloch[d] = -1.0*kBloch0[d];
    };
   
-  bool PureImagOmega = (real(Omega)==0);
   /***************************************************************/
   /***************************************************************/
   /***************************************************************/
@@ -173,7 +180,7 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
       { Warn("wrong-size RFMatrix passed to GetRFMatrix; reallocating");
         delete RFMatrix;
       };
-     RFMatrix = new HMatrix(NBF, 6*NX, PureImagOmega?LHM_REAL:LHM_COMPLEX);
+     RFMatrix = new HMatrix(NBF, 6*NX, RealRF?LHM_REAL:LHM_COMPLEX);
    };
   RFMatrix->Zero();
 
