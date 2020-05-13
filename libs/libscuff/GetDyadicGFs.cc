@@ -64,12 +64,13 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
   int NX  = XMatrix->NR;
   Log("Getting DGFs at %i eval points...",NX);
   
-  /* Decide whether real RFSource and real RFDest suffice */
+  /* Decide whether real RFSource and real RFDest suffice: */
+  /* Condition: for compact geo at imag freq, despite  k=0 */
+  bool RealRF = (!LDim && (real(Omega)==0)); 
   bool HavekBloch = false;
   if (kBloch)
    for(int d=0; d<LDim; d++)
     if (kBloch[d]!=0.0) HavekBloch=true;  
-  bool RealRF = (!HavekBloch && (real(Omega)==0));
 
   /*--------------------------------------------------------------*/
   /* allocate storage for RFSource, RFDest matrices. I keep these */
@@ -126,7 +127,7 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
     delete RFSource;
     RFSource = RFSource_real;
   } */
-  M->LUSolve(RFSource); //Set a break point here 
+  M->LUSolve(RFSource); //Set a break point here  
 
   /*--------------------------------------------------------------*/
   /*--------------------------------------------------------------*/
