@@ -391,7 +391,7 @@ void HMatrix::SetEntry(size_t nr, size_t nc, cdouble Entry)
   if (RealComplex==LHM_REAL)
    {
    DM[Index] = real(Entry);
-   if (imag(Entry) != 0.0) Warn("warning: non-zero imaginary part ignored.");
+   if (imag(Entry) != 0.0) Warn("warning: imaginary part %.2e ignored.", imag(Entry));
    }
   else if ( StorageType==LHM_HERMITIAN )
    ZM[Index] = ( Flipped==1 ? conj(Entry) : Entry );
