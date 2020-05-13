@@ -150,16 +150,12 @@ HMatrix *RWGGeometry::GetRFMatrix(cdouble Omega, double *kBloch0,
                                   bool MinuskBloch, int ColumnOffset)
 {
   /* Decide whether real RFSource and real RFDest suffice */
-  double *kBloch=kBloch0;
-  bool HavekBloch = false;
-  if (kBloch)
-   for(int d=0; d<LDim; d++)
-    if (kBloch[d]!=0.0) HavekBloch=true;  
-  bool RealRF = (!HavekBloch && (real(Omega)==0));
+  bool RealRF = (!LDim && (real(Omega)==0)); 
 
   /* Flip kBloch if necessary */
+  double *kBloch=kBloch0;
   double kBlochBuffer[3];
-  if (HavekBloch && MinuskBloch)
+  if (kBloch && MinuskBloch)
    { kBloch = kBlochBuffer;
      kBloch[0] = kBloch[1] = kBloch[2] = 0.0;
      for(int d=0; d<LDim; d++)
