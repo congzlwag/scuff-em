@@ -383,6 +383,7 @@ int SGJCIntegrand(unsigned ndim, const double *x, void *params,
   double Xi = x[0] / (1.0-x[0]);
 
   SCPData *SCPD = (SCPData *)params;
+  LoadPolarizability(SCPD, Xi);
   GetXiIntegrand(SCPD, Xi, fval);
 
   unsigned nf;
