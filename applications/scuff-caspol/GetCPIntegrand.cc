@@ -409,6 +409,8 @@ void EvaluateFrequencyIntegral(SCPData *SCPD, double *U)
 
 void LoadPolarizability(SCPData *SCPD, double Xi)
 {
+  if (Xi<=XIMIN)
+   Xi=XIMIN;
   PolModel **PolModels = SCPD->PolModels;
   HMatrix **Alphas     = SCPD->Alphas;
   for(int na=0; na<(SCPD->NumAtoms); na++)
