@@ -221,8 +221,6 @@ void GetXiIntegrand(SCPData *SCPD, double Xi, double *U)
   /* look up the polarizability tensor for each atomic species   */
   /* at this frequency                                           */
   /***************************************************************/
-  for(int na=0; na<NumAtoms; na++)
-   PolModels[na]->GetPolarizability(Xi, Alphas[na]);
 
   /***************************************************************/ 
   /***************************************************************/ 
@@ -406,4 +404,15 @@ void EvaluateFrequencyIntegral(SCPData *SCPD, double *U)
                 ERROR_INDIVIDUAL, U, Error, "pcubature.log");
 
   delete[] Error;
+}
+
+void LoadPolarizability(SCPData *SCPD, double Xi)
+{
+  PolModel **PolModels = SCPD->PolModels;
+  HMatrix **Alphas     = SCPD->Alphas;
+  for(int na=0; na<(SCPD->NumAtoms); na++)
+  {
+   PolModels[na]->GetPolarizability(Xi, Alphas[na]);
+   printf("@Xi=%e, Alphas[%d][0,0] = %e\n", Xi, na, Alphas[na]->GetEntryD(0,0));
+  }
 }
