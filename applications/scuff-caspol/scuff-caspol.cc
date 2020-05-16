@@ -324,7 +324,7 @@ int main(int argc, char *argv[])
         GetCPIntegrand((void *)SCPD, cdouble(0.0,Xi), kBloch, U);
       }
    }
-  if (XiList)
+  else if (XiList)
    {
      for(int nXi=0; nXi<XiList->N; nXi++)
      {
