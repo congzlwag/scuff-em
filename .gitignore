@@ -12,6 +12,9 @@ scuff-plotEpsMu
 scuff-rf
 scuff-transmission
 scuff-tmatrix
+scuff-spectrum
+scuff-integrate
+scuff-ldos
 # don't ignore directories, though:
 !scuff-analyze/
 !scuff-caspol/
