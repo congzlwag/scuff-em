@@ -121,12 +121,7 @@ HMatrix *RWGGeometry::GetDyadicGFs(cdouble Omega, double *kBloch,
   /*--------------------------------------------------------------*/
   /*--------------------------------------------------------------*/
   Log(" LUSolving...");
-  /*
-  if (RFSource->RealComplex==1 && M->RealComplex==0){
-    HMatrix *RFSource_real = GetReal(RFSource);
-    delete RFSource;
-    RFSource = RFSource_real;
-  } */
+  
   M->LUSolve(RFSource); //Set a break point here  
 
   /*--------------------------------------------------------------*/

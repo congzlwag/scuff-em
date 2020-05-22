@@ -218,8 +218,8 @@ void GetXiIntegrand(SCPData *SCPD, double Xi, double *U)
    Xi=XIMIN;
 
   /***************************************************************/
-  /* look up the polarizability tensor for each atomic species   */
-  /* at this frequency                                           */
+  /* now the polarizability tensor for each atomic species must  */
+  /* have been looked up by LoadPolarizability at this frequency */
   /***************************************************************/
 
   /***************************************************************/ 
