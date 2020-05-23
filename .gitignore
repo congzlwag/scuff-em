@@ -115,3 +115,5 @@ interactiveTests/scuff-test-Ewald
 unitTests/unit-test-BEMMatrix
 unitTests/unit-test-PPIs
 unitTests/unit-test-PFT
+tests/CheckSCUFFData
+libs/libhmat/tSMatrix
