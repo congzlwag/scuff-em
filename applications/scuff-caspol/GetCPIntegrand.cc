@@ -156,7 +156,7 @@ void GetCPIntegrand(void *pSCPD, cdouble Omega, double *kBloch, double *U)
             if (nsp>ns)
              G->AssembleBEMMatrixBlock(nsp, ns, Omega, kBloch,
                                        M, 0, ColOffset, RowOffset,
-                                       ABMBCache[nb], true);
+                                       ABMBCache[nb], false);
           };
       };
      Log("LU-factorizing...");
