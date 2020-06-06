@@ -489,13 +489,13 @@ void ComputeQIFIPPIData(double **Va, double **Vb, int ncv, QIFIPPIData *QIFD)
   /* Check NAN for RM1 and RM3 in QIFD, Override to 0 if there is NAN*/
   int j=0;
   for (j=0; j<3; j++){
-    if std::isnan(QIFD->xMxpRM3[j])
+    if (std::isnan(QIFD->xMxpRM3[j]))
       QIFD->xMxpRM3[j] = 0;
-    if std::isnan(QIFD->xXxpRM3[j])
+    if (std::isnan(QIFD->xXxpRM3[j]))
       QIFD->xXxpRM3[j] = 0;
   }
   for (j=0; j<9; j++){
-    if std::isnan(QIFD->uvupvpRM1[j])
+    if (std::isnan(QIFD->uvupvpRM1[j]))
       QIFD->uvupvpRM1[j] = 0;
   }
 #endif
