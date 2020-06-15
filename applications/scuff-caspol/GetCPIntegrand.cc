@@ -293,6 +293,7 @@ void EvaluateMatsubaraSum(SCPData *SCPD, double Temperature, double *U)
      /***************************************************************/
      /* evaluate the frequency integrand at this matsubara frequency*/
      /***************************************************************/
+     LoadPolarizability(SCPD, Xi);
      GetXiIntegrand(SCPD, Xi, dU);
 
      /***************************************************************/
